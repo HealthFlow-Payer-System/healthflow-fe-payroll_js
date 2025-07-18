@@ -1,8 +1,8 @@
 import React from 'react';
 import _debounce from 'lodash/debounce';
 
-import { FormControlLabel, Grid, Checkbox } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { FormControlLabel, Grid, Checkbox } from '@mui/material';
+import { makeStyles } from '@mui/material/styles';
 
 import {
   TextInput,

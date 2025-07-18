@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tab } from '@material-ui/core';
+import { Tab } from '@mui/material';
 import { PublishedComponent, useTranslations } from '@openimis/fe-core';
 import {
   BENEFIT_CONSUMPTION_LIST_TAB_VALUE,

@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { makeStyles } from '@material-ui/styles';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { makeStyles } from '@mui/material/styles';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
   Form,

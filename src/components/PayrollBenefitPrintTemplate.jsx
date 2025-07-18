@@ -6,8 +6,8 @@ import React, {
   forwardRef,
 } from 'react';
 
-import { Divider } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Divider } from '@mui/material';
+import { makeStyles } from '@mui/material/styles';
 
 import {
   useTranslations, useModulesManager,

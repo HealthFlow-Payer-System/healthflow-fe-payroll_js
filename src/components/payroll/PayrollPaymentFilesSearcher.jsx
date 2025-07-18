@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { IconButton, Tooltip } from '@material-ui/core';
-import DownloadIcon from '@material-ui/icons/CloudDownload';
+import { IconButton, Tooltip } from '@mui/material';
+import DownloadIcon from '@mui/icons-material/CloudDownload';
 
 import {
   Searcher,

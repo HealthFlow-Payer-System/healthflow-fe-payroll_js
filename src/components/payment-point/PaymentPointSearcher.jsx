@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect, useSelector } from 'react-redux';
 
-import { IconButton, Tooltip } from '@material-ui/core';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { IconButton, Tooltip } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
   Searcher,
