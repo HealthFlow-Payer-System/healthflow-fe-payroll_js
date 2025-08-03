@@ -11,17 +11,16 @@ import {
   baseApiUrl,
   formatMessage,
 } from '@openimis/fe-core';
-import { withTheme, withStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-const styles = (theme) => ({
-  item: theme.paper.item,
-});
+const StyledPayrollPaymentDataUploadDialog = styled('div')(({ theme }) => ({
+  '& .item': theme.paper.item,
+}));
 
 function PayrollPaymentDataUploadDialog({
   intl,
-  classes,
   payrollUuid,
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,12 +77,11 @@ function PayrollPaymentDataUploadDialog({
   };
 
   return (
-    <>
+    <StyledPayrollPaymentDataUploadDialog>
       <Button
         onClick={handleOpen}
         variant="outlined"
         color="#DFEDEF"
-        className={classes.button}
         style={{
           border: '0px',
           marginTop: '6px',
@@ -166,7 +164,7 @@ function PayrollPaymentDataUploadDialog({
           </DialogActions>
         </form>
       </Dialog>
-    </>
+    </StyledPayrollPaymentDataUploadDialog>
   );
 }
 
@@ -179,9 +177,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default injectIntl(
-  withTheme(
-    withStyles(styles)(
-      connect(mapStateToProps, mapDispatchToProps)(PayrollPaymentDataUploadDialog),
-    ),
-  ),
+  connect(mapStateToProps, mapDispatchToProps)(PayrollPaymentDataUploadDialog),
 );

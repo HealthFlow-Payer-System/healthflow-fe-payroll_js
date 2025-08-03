@@ -3,17 +3,17 @@
 /* eslint-disable no-param-reassign */
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import PrintIcon from '@material-ui/icons/Print';
+import PrintIcon from '@mui/icons-material/Print';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   Typography, Button,
-} from '@material-ui/core';
+} from '@mui/material';
 
 import {
   Searcher, useModulesManager, useTranslations,
 } from '@openimis/fe-core';
-import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
+import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined';
 import { fetchBenefitConsumptions } from '../../actions';
 import { BENEFIT_CONSUMPTION_STATUS, DEFAULT_PAGE_SIZE, ROWS_PER_PAGE_OPTIONS } from '../../constants';
 import BenefitConsumptionFilter from './BenefitConsumptionFilter';

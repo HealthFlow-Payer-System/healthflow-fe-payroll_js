@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { makeStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import {
   Helmet,
@@ -14,23 +14,22 @@ import {
 } from '../../constants';
 import PayrollSearcherPending from '../../components/payroll/PayrollSearcherPending';
 
-const useStyles = makeStyles((theme) => ({
-  page: theme.page,
-  fab: theme.fab,
+const StyledPendingPayrollsPage = styled('div')(({ theme }) => ({
+  '&.page': theme.page,
+  '& .fab': theme.fab,
 }));
 
 function PendingPayrollsPage() {
   const modulesManager = useModulesManager();
-  const classes = useStyles();
   const rights = useSelector((store) => store.core.user.i_user.rights ?? []);
   const { formatMessage } = useTranslations(MODULE_NAME, modulesManager);
 
   return (
-    <div className={classes.page}>
+    <StyledPendingPayrollsPage className="page">
       <Helmet title={formatMessage('paymentPoint.page.title')} />
       {rights.includes(RIGHT_PAYROLL_SEARCH)
-        && <PayrollSearcherPending classes={classes} />}
-    </div>
+        && <PayrollSearcherPending />}
+    </StyledPendingPayrollsPage>
   );
 }
 

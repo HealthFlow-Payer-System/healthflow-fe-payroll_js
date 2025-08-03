@@ -9,8 +9,8 @@ import {
 import {
   Paper,
   Grid,
-} from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+} from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { fetchPayrollBenefitConsumptions, fetchBenefitsSummary } from '../../actions';
 import { DEFAULT_PAGE_SIZE, ROWS_PER_PAGE_OPTIONS } from '../../constants';
 import BenefitConsumptionPayrollFilter from './BenefitConsumptionPayrollFilter';

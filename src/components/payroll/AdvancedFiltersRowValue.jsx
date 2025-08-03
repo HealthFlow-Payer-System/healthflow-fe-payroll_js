@@ -12,8 +12,8 @@ import {
   CustomFilterTypeStatusPicker,
   CustomFilterFieldStatusPicker,
 } from '@openimis/fe-core';
-import { Grid } from '@material-ui/core';
-import { withTheme, withStyles } from '@material-ui/core/styles';
+import { Grid } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import {
   BOOLEAN,
@@ -24,12 +24,11 @@ import {
   BOOL_OPTIONS,
 } from '../../constants';
 
-const styles = (theme) => ({
-  item: theme.paper.item,
-});
+const StyledAdvancedFiltersRowValue = styled(Grid)(({ theme }) => ({
+  '&.item': theme.paper.item,
+}));
 
 function AdvancedFiltersRowValue({
-  classes,
   customFilters,
   currentFilter,
   setCurrentFilter,
@@ -116,10 +115,10 @@ function AdvancedFiltersRowValue({
   };
 
   return (
-    <Grid
+    <StyledAdvancedFiltersRowValue
       container
       direction="row"
-      className={classes.item}
+      className="item"
       style={{ backgroundColor: '#DFEDEF' }}
     >
       {filters.length > 0 && !readOnly ? (
@@ -139,7 +138,7 @@ function AdvancedFiltersRowValue({
           </span>
         </div>
       ) : (<></>)}
-      <Grid item xs={3} className={classes.item}>
+      <Grid item xs={3} className="item">
         <CustomFilterFieldStatusPicker
           module="payroll"
           label="payroll.advancedFilters.field"
@@ -150,7 +149,7 @@ function AdvancedFiltersRowValue({
         />
       </Grid>
       {currentFilter.field !== '' ? (
-        <Grid item xs={3} className={classes.item}>
+        <Grid item xs={3} className="item">
           <CustomFilterTypeStatusPicker
             module="payroll"
             label="payroll.advancedFilters.filter"
@@ -161,14 +160,14 @@ function AdvancedFiltersRowValue({
             readOnly={readOnly}
           />
         </Grid>
-      ) : (<></>) }
+      ) : (<></>)}
       {currentFilter.field !== '' && currentFilter.filter !== '' ? (
-        <Grid item xs={3} className={classes.item}>
+        <Grid item xs={3} className="item">
           {renderInputBasedOnType(currentFilter.type)}
         </Grid>
-      ) : (<></>) }
-    </Grid>
+      ) : (<></>)}
+    </StyledAdvancedFiltersRowValue>
   );
 }
 
-export default injectIntl(withTheme(withStyles(styles)(connect(null, null)(AdvancedFiltersRowValue))));
+export default injectIntl(connect(null, null)(AdvancedFiltersRowValue));

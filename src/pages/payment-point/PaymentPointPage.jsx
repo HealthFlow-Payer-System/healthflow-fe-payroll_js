@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { makeStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
@@ -29,9 +29,9 @@ import { ACTION_TYPE } from '../../reducer';
 import { mutationLabel, pageTitle } from '../../utils/string-utils';
 import PaymentPointHeadPanel from './PaymentPointHeadPanel';
 
-const useStyles = makeStyles((theme) => ({
-  page: theme.page,
-  lockedPage: theme.page.locked,
+const StyledPaymentPointPage = styled('div')(({ theme }) => ({
+  '&.page': theme.page,
+  '&.lockedPage': theme.page.locked,
 }));
 
 function PaymentPointPage({
@@ -50,7 +50,6 @@ function PaymentPointPage({
   clearConfirm,
 }) {
   const modulesManager = useModulesManager();
-  const classes = useStyles();
   const history = useHistory();
   const { formatMessage, formatMessageWithValues } = useTranslations(MODULE_NAME, modulesManager);
 
@@ -138,29 +137,29 @@ function PaymentPointPage({
 
   return (
     rights.includes(RIGHT_PAYMENT_POINT_UPDATE) && (
-    <div className={pageLocked ? classes.lockedPage : null}>
-      <div className={classes.page}>
-        <Form
-          module="payroll"
-          title={formatMessageWithValues('PaymentPointPage.title', pageTitle(paymentPoint))}
-          titleParams={pageTitle(paymentPoint)}
-          openDirty
-          edited={editedPaymentPoint}
-          onEditedChanged={setEditedPaymentPoint}
-          back={back}
-          mandatoryFieldsEmpty={mandatoryFieldsEmpty}
-          canSave={canSave}
-          save={handleSave}
-          HeadPanel={PaymentPointHeadPanel}
-          readOnly={pageLocked}
-          rights={rights}
-          actions={actions}
-          setConfirmedAction={setConfirmedAction}
-          saveTooltip={formatMessage('tooltip.save')}
-        />
-      </div>
+      <StyledPaymentPointPage className={pageLocked ? 'lockedPage' : null}>
+        <div className="page">
+          <Form
+            module="payroll"
+            title={formatMessageWithValues('PaymentPointPage.title', pageTitle(paymentPoint))}
+            titleParams={pageTitle(paymentPoint)}
+            openDirty
+            edited={editedPaymentPoint}
+            onEditedChanged={setEditedPaymentPoint}
+            back={back}
+            mandatoryFieldsEmpty={mandatoryFieldsEmpty}
+            canSave={canSave}
+            save={handleSave}
+            HeadPanel={PaymentPointHeadPanel}
+            readOnly={pageLocked}
+            rights={rights}
+            actions={actions}
+            setConfirmedAction={setConfirmedAction}
+            saveTooltip={formatMessage('tooltip.save')}
+          />
+        </div>
 
-    </div>
+      </StyledPaymentPointPage>
     )
   );
 }

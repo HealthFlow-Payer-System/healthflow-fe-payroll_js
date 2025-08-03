@@ -3,7 +3,7 @@ import React from 'react';
 import { injectIntl } from 'react-intl';
 
 import { Grid, Divider, Typography } from '@mui/material';
-import { withStyles, withTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import {
   formatMessage,
@@ -18,13 +18,13 @@ import { CLEARED_STATE_FILTER } from '../../constants';
 import PayrollStatusPicker from './PayrollStatusPicker';
 import PaymentMethodPicker from '../../pickers/PaymentMethodPicker';
 
-const styles = (theme) => ({
-  tableTitle: theme.table.title,
-  item: theme.paper.item,
-  fullHeight: {
+const StyledPayrollHeadPanel = styled('div')(({ theme }) => ({
+  '& .tableTitle': theme.table.title,
+  '& .item': theme.paper.item,
+  '& .fullHeight': {
     height: '100%',
   },
-});
+}));
 
 class PayrollHeadPanel extends FormPanel {
   constructor(props) {
@@ -91,8 +91,8 @@ class PayrollHeadPanel extends FormPanel {
     const { appliedCustomFilters, appliedFiltersRowStructure } = this.state;
     return (
       <>
-        <Grid container className={classes.item}>
-          <Grid item xs={3} className={classes.item}>
+        <Grid container className="item">
+          <Grid item xs={3} className="item">
             <TextInput
               module="payroll"
               label={formatMessage(intl, 'payroll', 'paymentPoint.name')}
@@ -102,7 +102,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={isPayrollFromFailedInvoices ? !isPayrollFromFailedInvoices : readOnly}
             />
           </Grid>
-          <Grid item xs={3} className={classes.item}>
+          <Grid item xs={3} className="item">
             <PublishedComponent
               pubRef="contributionPlan.PaymentPlanPicker"
               required
@@ -113,7 +113,7 @@ class PayrollHeadPanel extends FormPanel {
               benefitPlanId={benefitPlanId}
             />
           </Grid>
-          <Grid item xs={3} className={classes.item}>
+          <Grid item xs={3} className="item">
             <PublishedComponent
               pubRef="payroll.PaymentPointPicker"
               withLabel
@@ -124,7 +124,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={readOnly}
             />
           </Grid>
-          <Grid item xs={3} className={classes.item}>
+          <Grid item xs={3} className="item">
             <PublishedComponent
               pubRef="paymentCycle.PaymentCyclePicker"
               withLabel
@@ -137,16 +137,16 @@ class PayrollHeadPanel extends FormPanel {
             />
           </Grid>
           {readOnly && !isPayrollFromFailedInvoices && (
-          <Grid item xs={3} className={classes.item}>
-            <PayrollStatusPicker
-              required
-              withNull={false}
-              readOnly={readOnly}
-              value={!!payroll?.status && payroll.status}
-            />
-          </Grid>
+            <Grid item xs={3} className="item">
+              <PayrollStatusPicker
+                required
+                withNull={false}
+                readOnly={readOnly}
+                value={!!payroll?.status && payroll.status}
+              />
+            </Grid>
           )}
-          <Grid item xs={3} className={classes.item}>
+          <Grid item xs={3} className="item">
             <PaymentMethodPicker
               required
               withNull={false}
@@ -156,7 +156,7 @@ class PayrollHeadPanel extends FormPanel {
               label={formatMessage(intl, 'payroll', 'paymentMethod')}
             />
           </Grid>
-          <Grid item xs={3} className={classes.item}>
+          <Grid item xs={3} className="item">
             <PublishedComponent
               pubRef="core.DatePicker"
               module="payroll"
@@ -167,7 +167,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={readOnly}
             />
           </Grid>
-          <Grid item xs={3} className={classes.item}>
+          <Grid item xs={3} className="item">
             <PublishedComponent
               pubRef="core.DatePicker"
               module="payroll"
@@ -181,21 +181,21 @@ class PayrollHeadPanel extends FormPanel {
         </Grid>
         <Divider />
         {!isPayrollFromFailedInvoices
-            && (
+          && (
             <>
               <>
                 <Typography>
-                  <div className={classes.item}>
+                  <div className="item">
                     <FormattedMessage module="contributionPlan" id="paymentPlan.advancedCriteria" />
                   </div>
                 </Typography>
                 {!readOnly && (
-                  <div className={classes.item}>
+                  <div className="item">
                     <FormattedMessage module="contributionPlan" id="paymentPlan.advancedCriteria.tip" />
                   </div>
                 )}
                 <Divider />
-                <Grid container className={classes.item}>
+                <Grid container className="item">
 
                   <AdvancedFiltersDialog
                     object={payroll?.paymentPlan?.benefitPlan
@@ -218,7 +218,7 @@ class PayrollHeadPanel extends FormPanel {
               </>
               <Divider />
             </>
-            )}
+          )}
       </>
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import _debounce from 'lodash/debounce';
 
 import { FormControlLabel, Grid, Checkbox } from '@mui/material';
-import { makeStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import {
   TextInput,
@@ -19,12 +19,12 @@ import {
   MODULE_NAME,
 } from '../../constants';
 
-const useStyles = makeStyles((theme) => ({
-  form: {
+const StyledPaymentPointFilter = styled('div')(({ theme }) => ({
+  '& .form': {
     padding: '0 0 10px 0',
     width: '100%',
   },
-  item: {
+  '& .item': {
     padding: theme.spacing(1),
   },
 }));
@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 function PaymentPointFilter({
   filters, onChangeFilters,
 }) {
-  const classes = useStyles();
   const modulesManager = useModulesManager();
   const { formatMessage } = useTranslations(MODULE_NAME, modulesManager);
 
@@ -63,76 +62,78 @@ function PaymentPointFilter({
   };
 
   return (
-    <Grid container className={classes.form}>
-      <ControlledField
-        module="payroll"
-        id="PaymentPointFilter.location"
-        field={(
-          <Grid xs={12}>
-            <PublishedComponent
-              pubRef="location.DetailedLocationFilter"
-              withNull
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              anchor="parentLocation"
-            />
-          </Grid>
-          )}
-      />
-      <ControlledField
-        module="payroll"
-        id="admin.PaymentPointManagerPicker"
-        field={(
-          <Grid className={classes.item} xs={3}>
-            <PublishedComponent
-              pubRef="admin.PaymentPointManagerPicker"
-              value={filterValue('ppm_Id')}
-              withPlaceholder
-              withLabel
-              onChange={(ppm) => onChangeFilters([
-                {
-                  id: 'ppm_Id',
-                  value: ppm,
-                  filter: `ppm_Id: "${ppm?.id && decodeId(ppm?.id)}"`,
-                },
-              ])}
-            />
-          </Grid>
-          )}
-      />
-      <Grid xs={3} className={classes.item}>
-        <TextInput
+    <StyledPaymentPointFilter>
+      <Grid container className="form">
+        <ControlledField
           module="payroll"
-          label={formatMessage('paymentPoint.name')}
-          value={filterTextFieldValue('name')}
-          onChange={onChangeStringFilter('name', CONTAINS_LOOKUP)}
+          id="PaymentPointFilter.location"
+          field={(
+            <Grid xs={12}>
+              <PublishedComponent
+                pubRef="location.DetailedLocationFilter"
+                withNull
+                filters={filters}
+                onChangeFilters={onChangeFilters}
+                anchor="parentLocation"
+              />
+            </Grid>
+          )}
+        />
+        <ControlledField
+          module="payroll"
+          id="admin.PaymentPointManagerPicker"
+          field={(
+            <Grid className="item" xs={3}>
+              <PublishedComponent
+                pubRef="admin.PaymentPointManagerPicker"
+                value={filterValue('ppm_Id')}
+                withPlaceholder
+                withLabel
+                onChange={(ppm) => onChangeFilters([
+                  {
+                    id: 'ppm_Id',
+                    value: ppm,
+                    filter: `ppm_Id: "${ppm?.id && decodeId(ppm?.id)}"`,
+                  },
+                ])}
+              />
+            </Grid>
+          )}
+        />
+        <Grid xs={3} className="item">
+          <TextInput
+            module="payroll"
+            label={formatMessage('paymentPoint.name')}
+            value={filterTextFieldValue('name')}
+            onChange={onChangeStringFilter('name', CONTAINS_LOOKUP)}
+          />
+        </Grid>
+        <ControlledField
+          module="payroll"
+          id="paymentPointFilter.isDeleted"
+          field={(
+            <Grid xs={12} className="item">
+              <FormControlLabel
+                control={(
+                  <Checkbox
+                    color="primary"
+                    checked={filters?.isDeleted?.value}
+                    onChange={() => onChangeFilters([
+                      {
+                        id: 'isDeleted',
+                        value: !filters?.isDeleted?.value,
+                        filter: `isDeleted: ${!filters?.isDeleted?.value}`,
+                      },
+                    ])}
+                  />
+                )}
+                label={formatMessage('tooltip.isDeleted')}
+              />
+            </Grid>
+          )}
         />
       </Grid>
-      <ControlledField
-        module="payroll"
-        id="paymentPointFilter.isDeleted"
-        field={(
-          <Grid xs={12} className={classes.item}>
-            <FormControlLabel
-              control={(
-                <Checkbox
-                  color="primary"
-                  checked={filters?.isDeleted?.value}
-                  onChange={() => onChangeFilters([
-                    {
-                      id: 'isDeleted',
-                      value: !filters?.isDeleted?.value,
-                      filter: `isDeleted: ${!filters?.isDeleted?.value}`,
-                    },
-                  ])}
-                />
-                )}
-              label={formatMessage('tooltip.isDeleted')}
-            />
-          </Grid>
-          )}
-      />
-    </Grid>
+    </StyledPaymentPointFilter>
   );
 }
 

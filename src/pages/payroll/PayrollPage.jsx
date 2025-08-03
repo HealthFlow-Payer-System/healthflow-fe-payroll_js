@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { makeStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import {
   Form,
@@ -27,8 +27,8 @@ import { mutationLabel, pageTitle } from '../../utils/string-utils';
 import PayrollHeadPanel from '../../components/payroll/PayrollHeadPanel';
 import PayrollTab from '../../components/payroll/PayrollTab';
 
-const useStyles = makeStyles((theme) => ({
-  page: theme.page,
+const StyledPayrollPage = styled('div')(({ theme }) => ({
+  '&.page': theme.page,
 }));
 
 function PayrollPage({
@@ -48,7 +48,6 @@ function PayrollPage({
   benefitPlanId,
 }) {
   const modulesManager = useModulesManager();
-  const classes = useStyles();
   const history = useHistory();
   const { formatMessage, formatMessageWithValues } = useTranslations(MODULE_NAME, modulesManager);
 
@@ -148,7 +147,7 @@ function PayrollPage({
 
   return (
     rights.includes(RIGHT_PAYROLL_CREATE) && (
-    <div className={classes.page}>
+    <StyledPayrollPage className="page">
       <Form
         key={payrollUuid}
         module="payroll"
@@ -175,7 +174,7 @@ function PayrollPage({
         isPayrollFromFailedInvoices={isPayrollFromFailedInvoices}
         benefitPlanId={benefitPlanId}
       />
-    </div>
+    </StyledPayrollPage>
     )
   );
 }

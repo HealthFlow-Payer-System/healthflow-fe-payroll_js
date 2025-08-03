@@ -3,28 +3,27 @@
 /* eslint-disable no-prototype-builtins */
 import React, { useEffect, useState } from 'react';
 import { injectIntl } from 'react-intl';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import {
   decodeId,
   formatMessage,
   fetchCustomFilter,
 } from '@openimis/fe-core';
-import { withTheme, withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import AddCircle from '@material-ui/icons/Add';
+import AddCircle from '@mui/icons-material/Add';
 import _ from 'lodash';
 import AdvancedFiltersRowValue from './AdvancedFiltersRowValue';
 import { BENEFIT_PLAN, CLEARED_STATE_FILTER } from '../../constants';
 import { isBase64Encoded } from '../../utils/advanced-filters-utils';
 
-const styles = (theme) => ({
-  item: theme.paper.item,
-});
+const StyledAdvancedFiltersDialog = styled('div')(({ theme }) => ({
+  '& .item': theme.paper.item,
+}));
 
 function AdvancedFiltersDialog({
   intl,
-  classes,
   object,
   objectToSave,
   fetchCustomFilter,
@@ -134,7 +133,7 @@ function AdvancedFiltersDialog({
     }
   }, [object]);
   return (
-    <>
+    <StyledAdvancedFiltersDialog>
       {filters.map((filter, index) => (
         <AdvancedFiltersRowValue
           customFilters={customFilters}
@@ -146,7 +145,7 @@ function AdvancedFiltersDialog({
           readOnly={readOnly || confirmed}
         />
       ))}
-      { !readOnly && !confirmed ? (
+      {!readOnly && !confirmed ? (
         <div
           style={{ backgroundColor: '#DFEDEF', paddingLeft: '10px', paddingBottom: '10px' }}
         >
@@ -173,9 +172,9 @@ function AdvancedFiltersDialog({
             {formatMessage(intl, 'payroll', 'payroll.advancedFilters.button.addFilters')}
           </Button>
         </div>
-      ) : (<></>) }
+      ) : (<></>)}
       <div>
-        { !readOnly && !confirmed ? (
+        {!readOnly && !confirmed ? (
           <>
             <div style={{ float: 'left' }}>
               <Button
@@ -204,9 +203,9 @@ function AdvancedFiltersDialog({
               </Button>
             </div>
           </>
-        ) : <></> }
+        ) : <></>}
       </div>
-    </>
+    </StyledAdvancedFiltersDialog>
   );
 }
 
@@ -224,5 +223,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default injectIntl(
-  withTheme(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(AdvancedFiltersDialog))),
+  connect(mapStateToProps, mapDispatchToProps)(AdvancedFiltersDialog),
 );

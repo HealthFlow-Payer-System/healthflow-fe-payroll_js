@@ -11,18 +11,17 @@ import {
   renderInputComponent,
   createFieldsBasedOnJSON,
 } from '@openimis/fe-core';
-import { withTheme, withStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { MODULE_NAME } from '../../../constants';
 
-const styles = (theme) => ({
-  item: theme.paper.item,
-});
+const StyledAdditionalFieldsDialog = styled('div')(({ theme }) => ({
+  '& .item': theme.paper.item,
+}));
 
 function AdditionalFieldsDialog({
   intl,
-  classes,
   jsonExt,
   buttonLabel,
   title,
@@ -41,12 +40,11 @@ function AdditionalFieldsDialog({
   const jsonExtFields = createFieldsBasedOnJSON(JSON.stringify(JSON.parse(jsonExt).extra_info));
 
   return (
-    <>
+    <StyledAdditionalFieldsDialog>
       <Button
         onClick={handleOpen}
         variant="outlined"
         color="#DFEDEF"
-        className={classes.button}
         style={{
           border: '0px',
           marginTop: '6px',
@@ -77,9 +75,9 @@ function AdditionalFieldsDialog({
             <div
               style={{ backgroundColor: '#DFEDEF', paddingLeft: '10px', paddingBottom: '10px' }}
             >
-              <Grid container className={classes.item}>
+              <Grid container className="item">
                 {jsonExtFields?.map((jsonExtField) => (
-                  <Grid item xs={6} className={classes.item}>
+                  <Grid item xs={6} className="item">
                     {renderInputComponent(MODULE_NAME, jsonExtField)}
                   </Grid>
                 ))}
@@ -113,7 +111,7 @@ function AdditionalFieldsDialog({
           </DialogActions>
         </form>
       </Dialog>
-    </>
+    </StyledAdditionalFieldsDialog>
   );
 }
 
@@ -125,9 +123,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default injectIntl(
-  withTheme(
-    withStyles(styles)(
-      connect(mapStateToProps, mapDispatchToProps)(AdditionalFieldsDialog),
-    ),
-  ),
+  connect(mapStateToProps, mapDispatchToProps)(AdditionalFieldsDialog),
 );

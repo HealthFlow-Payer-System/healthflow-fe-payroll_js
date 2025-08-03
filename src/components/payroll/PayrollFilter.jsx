@@ -2,7 +2,7 @@ import React from 'react';
 import _debounce from 'lodash/debounce';
 
 import { FormControlLabel, Grid, Checkbox } from '@mui/material';
-import { makeStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import {
   TextInput,
@@ -21,12 +21,12 @@ import {
 import PayrollStatusPicker from './PayrollStatusPicker';
 import PaymentMethodPicker from '../../pickers/PaymentMethodPicker';
 
-const useStyles = makeStyles((theme) => ({
-  form: {
+const StyledPayrollFilter = styled('div')(({ theme }) => ({
+  '& .form': {
     padding: '0 0 10px 0',
     width: '100%',
   },
-  item: {
+  '& .item': {
     padding: theme.spacing(1),
   },
 }));
@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 function PayrollFilter({
   filters, onChangeFilters, statusReadOnly = false,
 }) {
-  const classes = useStyles();
   const modulesManager = useModulesManager();
   const { formatMessage } = useTranslations(MODULE_NAME, modulesManager);
 
@@ -65,8 +64,9 @@ function PayrollFilter({
   };
 
   return (
-    <Grid container className={classes.form}>
-      <Grid item xs={3} className={classes.item}>
+    <StyledPayrollFilter>
+      <Grid container className="form">
+      <Grid item xs={3} className="item">
         <TextInput
           module="payroll"
           label={formatMessage('payroll.name')}
@@ -74,7 +74,7 @@ function PayrollFilter({
           onChange={onChangeStringFilter('name', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={3} className={classes.item}>
+      <Grid item xs={3} className="item">
         <PublishedComponent
           pubRef="contributionPlan.PaymentPlanPicker"
           filters={filters}
@@ -88,7 +88,7 @@ function PayrollFilter({
           ])}
         />
       </Grid>
-      <Grid item xs={3} className={classes.item}>
+      <Grid item xs={3} className="item">
         <PublishedComponent
           pubRef="payroll.PaymentPointPicker"
           withLabel
@@ -104,7 +104,7 @@ function PayrollFilter({
           ])}
         />
       </Grid>
-      <Grid item xs={3} className={classes.item}>
+      <Grid item xs={3} className="item">
         <PublishedComponent
           pubRef="paymentCycle.PaymentCyclePicker"
           withLabel
@@ -120,7 +120,7 @@ function PayrollFilter({
           ])}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <PayrollStatusPicker
           withNull
           nullLabel={formatMessage('any')}
@@ -136,7 +136,7 @@ function PayrollFilter({
           ])}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <PaymentMethodPicker
           withNull
           nullLabel={formatMessage('any')}
@@ -155,7 +155,7 @@ function PayrollFilter({
         module="payroll"
         id="payrollFilter.showHistory"
         field={(
-          <Grid item xs={12} className={classes.item}>
+          <Grid item xs={12} className="item">
             <FormControlLabel
               control={(
                 <Checkbox
@@ -169,13 +169,14 @@ function PayrollFilter({
                     },
                   ])}
                 />
-                )}
+              )}
               label={formatMessage('tooltip.isDeleted')}
             />
           </Grid>
-          )}
+        )}
       />
     </Grid>
+    </StyledPayrollFilter>
   );
 }
 

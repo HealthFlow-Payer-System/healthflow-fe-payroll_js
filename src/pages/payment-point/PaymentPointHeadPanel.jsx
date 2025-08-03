@@ -2,7 +2,7 @@ import React from 'react';
 import { injectIntl } from 'react-intl';
 
 import { Grid } from '@mui/material';
-import { withTheme, withStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import {
   TextInput,
@@ -12,20 +12,16 @@ import {
 } from '@openimis/fe-core';
 import { MAX_LENGTH } from '../../constants';
 
-const styles = (theme) => ({
-  tableTitle: theme.table.title,
-  item: theme.paper.item,
-  fullHeight: {
-    height: '100%',
-  },
-});
+const StyledPaymentPointHeadPanel = styled(Grid)(({ theme }) => ({
+  '&.item': theme.paper.item,
+}));
 
 class PaymentPointHeadPanel extends FormPanel {
   render() {
-    const { edited, classes, readOnly } = this.props;
+    const { edited, readOnly } = this.props;
     const paymentPoint = { ...edited };
     return (
-      <Grid container className={classes.item}>
+      <StyledPaymentPointHeadPanel container className="item">
         <Grid xs={12}>
           <PublishedComponent
             pubRef="location.DetailedLocation"
@@ -37,7 +33,7 @@ class PaymentPointHeadPanel extends FormPanel {
             onChange={(locations) => this.updateAttribute('location', locations)}
           />
         </Grid>
-        <Grid xs={3} className={classes.item}>
+        <Grid xs={3} className="item">
           <PublishedComponent
             pubRef="admin.PaymentPointManagerPicker"
             required
@@ -48,7 +44,7 @@ class PaymentPointHeadPanel extends FormPanel {
             onChange={(ppm) => this.updateAttribute('ppm', ppm)}
           />
         </Grid>
-        <Grid xs={3} className={classes.item}>
+        <Grid xs={3} className="item">
           <TextInput
             module="payroll"
             label="paymentPoint.name"
@@ -59,9 +55,9 @@ class PaymentPointHeadPanel extends FormPanel {
             onChange={(name) => this.updateAttribute('name', name)}
           />
         </Grid>
-      </Grid>
+      </StyledPaymentPointHeadPanel>
     );
   }
 }
 
-export default withModulesManager(injectIntl(withTheme(withStyles(styles)(PaymentPointHeadPanel))));
+export default withModulesManager(injectIntl(PaymentPointHeadPanel));

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Modal, Backdrop, Fade, Box, Typography, Button,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useTranslations, useModulesManager } from '@openimis/fe-core';
 
 function ErrorSummaryModal({ open, onClose, benefitAttachment }) {

@@ -2,7 +2,7 @@ import React from 'react';
 import _debounce from 'lodash/debounce';
 
 import { Grid } from '@mui/material';
-import { makeStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import {
   PublishedComponent,
@@ -14,18 +14,17 @@ import {
 import { CONTAINS_LOOKUP, DEFAULT_DEBOUNCE_TIME, EMPTY_STRING } from '../../constants';
 import BenefitConsumptionStatusPicker from '../../pickers/BenefitConsumptionStatusPicker';
 
-const useStyles = makeStyles((theme) => ({
-  form: {
+const StyledBenefitConsumptionFilter = styled('div')(({ theme }) => ({
+  '& .form': {
     padding: 0,
   },
-  item: {
+  '& .item': {
     padding: theme.spacing(1),
   },
 }));
 
 function BenefitConsumptionFilter({ filters, onChangeFilters }) {
   const modulesManager = useModulesManager();
-  const classes = useStyles();
   const { formatMessage } = useTranslations('payroll', modulesManager);
 
   const debouncedOnChangeFilters = _debounce(onChangeFilters, DEFAULT_DEBOUNCE_TIME);
@@ -65,8 +64,9 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
   };
 
   return (
-    <Grid container className={classes.form}>
-      <Grid item xs={2} className={classes.item}>
+    <StyledBenefitConsumptionFilter>
+      <Grid container className="form">
+        <Grid item xs={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.individual.firstName"
@@ -74,7 +74,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('individual_FirstName', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.individual.lastName"
@@ -82,7 +82,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('individual_LastName', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.photo"
@@ -90,7 +90,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('photo', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.code"
@@ -98,7 +98,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('code', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <PublishedComponent
           pubRef="core.DatePicker"
           module="payroll"
@@ -113,7 +113,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           ])}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.receipt"
@@ -129,7 +129,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('type', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <BenefitConsumptionStatusPicker
           module="payroll"
           label={formatMessage('benefitConsumptions.status.label')}
@@ -145,7 +145,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           ])}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid item xs={2} className="item">
         <NumberInput
           module="payroll"
           label={formatMessage('benefitConsumption.amount')}
@@ -155,6 +155,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
         />
       </Grid>
     </Grid>
+    </StyledBenefitConsumptionFilter>
   );
 }
 

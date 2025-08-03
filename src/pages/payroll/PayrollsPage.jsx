@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { Fab } from '@mui/material';
-import { makeStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
 
 import {
@@ -20,14 +20,13 @@ import {
 } from '../../constants';
 import PayrollSearcher from '../../components/payroll/PayrollSearcher';
 
-const useStyles = makeStyles((theme) => ({
-  page: theme.page,
-  fab: theme.fab,
+const StyledPayrollsPage = styled('div')(({ theme }) => ({
+  '&.page': theme.page,
+  '& .fab': theme.fab,
 }));
 
 function PayrollsPage() {
   const modulesManager = useModulesManager();
-  const classes = useStyles();
   const history = useHistory();
   const rights = useSelector((store) => store.core.user.i_user.rights ?? []);
   const { formatMessage } = useTranslations(MODULE_NAME, modulesManager);
@@ -37,20 +36,20 @@ function PayrollsPage() {
   );
 
   return (
-    <div className={classes.page}>
+    <StyledPayrollsPage className="page">
       <Helmet title={formatMessage('paymentPoint.page.title')} />
       {rights.includes(RIGHT_PAYROLL_SEARCH)
         && <PayrollSearcher />}
       {rights.includes(RIGHT_PAYROLL_CREATE)
         && withTooltip(
-          <div className={classes.fab}>
+          <div className="fab">
             <Fab color="primary" onClick={onCreate}>
               <AddIcon />
             </Fab>
           </div>,
           formatMessage('createButton.tooltip'),
         )}
-    </div>
+    </StyledPayrollsPage>
   );
 }
 

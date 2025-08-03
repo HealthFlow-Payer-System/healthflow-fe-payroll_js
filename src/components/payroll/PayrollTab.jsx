@@ -6,7 +6,7 @@ import {
   useModulesManager,
   useTranslations,
 } from '@openimis/fe-core';
-import { makeStyles } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import {
   BENEFIT_CONSUMPTION_LIST_TAB_VALUE,
   PAYROLL_TABS_LABEL_CONTRIBUTION_KEY,
@@ -17,20 +17,20 @@ import {
 import PayrollPaymentDataUploadDialog from './dialogs/PayrollPaymentDataUploadDialog';
 import downloadPayroll from '../../utils/export';
 
-const useStyles = makeStyles((theme) => ({
-  paper: theme.paper.paper,
-  tableTitle: theme.table.title,
-  tabs: {
+const StyledPayrollTab = styled(Paper)(({ theme }) => ({
+  ...theme.paper.paper,
+  '& .tableTitle': theme.table.title,
+  '& .tabs': {
     display: 'flex',
     alignItems: 'center',
   },
-  selectedTab: {
+  '& .selectedTab': {
     borderBottom: '4px solid white',
   },
-  unselectedTab: {
+  '& .unselectedTab': {
     borderBottom: '4px solid transparent',
   },
-  button: {
+  '& .button': {
     marginLeft: 'auto',
     padding: theme.spacing(1),
     fontSize: '0.875rem',
@@ -41,13 +41,12 @@ const useStyles = makeStyles((theme) => ({
 function PayrollTab({
   rights, setConfirmedAction, payrollUuid, isInTask, payroll, isPayrollFromFailedInvoices,
 }) {
-  const classes = useStyles();
 
   const [activeTab, setActiveTab] = useState(BENEFIT_CONSUMPTION_LIST_TAB_VALUE);
 
   const isSelected = (tab) => tab === activeTab;
 
-  const tabStyle = (tab) => (isSelected(tab) ? classes.selectedTab : classes.unselectedTab);
+  const tabStyle = (tab) => (isSelected(tab) ? 'selectedTab' : 'unselectedTab');
 
   const handleChange = (_, tab) => setActiveTab(tab);
 
@@ -59,8 +58,8 @@ function PayrollTab({
   };
 
   return (
-    <Paper className={classes.paper}>
-      <Grid container className={`${classes.tableTitle} ${classes.tabs}`}>
+    <StyledPayrollTab>
+      <Grid container className="tableTitle tabs">
         <div style={{ width: '100%' }}>
           <div style={{ float: 'left' }}>
             <Contributions
@@ -77,25 +76,25 @@ function PayrollTab({
           </div>
           <div style={{ float: 'right', paddingRight: '16px' }}>
             {payrollUuid && !isPayrollFromFailedInvoices && (
-            <Button
-              onClick={() => downloadPayrollData(payrollUuid, payroll.name)}
-              color="#DFEDEF"
-              className={classes.button}
-              style={{
-                border: '0px',
-                marginTop: '6px',
-                textTransform: 'uppercase',
-              }}
-            >
-              {formatMessage('payroll.summary.download')}
-            </Button>
+              <Button
+                onClick={() => downloadPayrollData(payrollUuid, payroll.name)}
+                color="#DFEDEF"
+                className="button"
+                style={{
+                  border: '0px',
+                  marginTop: '6px',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {formatMessage('payroll.summary.download')}
+              </Button>
             )}
             {payrollUuid && payroll?.status === PAYROLL_STATUS.APPROVE_FOR_PAYMENT && payroll.paymentMethod === 'StrategyOfflinePayment'
-                && (
+              && (
                 <PayrollPaymentDataUploadDialog
                   payrollUuid={payrollUuid}
                 />
-                )}
+              )}
           </div>
         </div>
       </Grid>
@@ -108,7 +107,7 @@ function PayrollTab({
         isInTask={isInTask}
         isPayrollFromFailedInvoices={isPayrollFromFailedInvoices}
       />
-    </Paper>
+    </StyledPayrollTab>
   );
 }
 
