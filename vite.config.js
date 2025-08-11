@@ -18,7 +18,7 @@ export default defineConfig({
         /^@date-io\/.*/,
         /^@mui\/material.*/,
         /^@mui\/icons-material.*/,
-        /^@material-ui\/.*/,
+       
         /^@openimis.*/,
         'classnames',
         'clsx',

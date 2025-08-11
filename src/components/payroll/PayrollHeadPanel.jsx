@@ -224,4 +224,4 @@ class PayrollHeadPanel extends FormPanel {
   }
 }
 
-export default withModulesManager(injectIntl(withTheme(withStyles(styles)(PayrollHeadPanel))));
+export default withModulesManager(injectIntl(PayrollHeadPanel));
