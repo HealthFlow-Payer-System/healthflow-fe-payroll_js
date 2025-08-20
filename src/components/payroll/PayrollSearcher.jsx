@@ -67,7 +67,6 @@ function PayrollSearcher({
     if (payrollToDelete && confirmed !== null) {
       setPayrollToDelete(null);
     }
-    return () => confirmed && clearConfirm(false);
   }, [confirmed]);
 
   useEffect(() => {
