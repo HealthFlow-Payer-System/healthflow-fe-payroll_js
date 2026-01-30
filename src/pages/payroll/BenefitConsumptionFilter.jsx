@@ -66,7 +66,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
   return (
     <StyledBenefitConsumptionFilter>
       <Grid container className="form">
-        <Grid item xs={2} className="item">
+        <Grid size={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.individual.firstName"
@@ -74,7 +74,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('individual_FirstName', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className="item">
+      <Grid size={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.individual.lastName"
@@ -82,7 +82,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('individual_LastName', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className="item">
+      <Grid size={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.photo"
@@ -90,7 +90,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('photo', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className="item">
+      <Grid size={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.code"
@@ -98,7 +98,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('code', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className="item">
+      <Grid size={2} className="item">
         <PublishedComponent
           pubRef="core.DatePicker"
           module="payroll"
@@ -113,7 +113,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           ])}
         />
       </Grid>
-      <Grid item xs={2} className="item">
+      <Grid size={2} className="item">
         <TextInput
           module="payroll"
           label="benefitConsumption.receipt"
@@ -121,7 +121,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('receipt', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className={classes.item}>
+      <Grid size={2} className={classes.item}>
         <TextInput
           module="payroll"
           label="benefitConsumption.type"
@@ -129,7 +129,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           onChange={onChangeStringFilter('type', CONTAINS_LOOKUP)}
         />
       </Grid>
-      <Grid item xs={2} className="item">
+      <Grid size={2} className="item">
         <BenefitConsumptionStatusPicker
           module="payroll"
           label={formatMessage('benefitConsumptions.status.label')}
@@ -145,7 +145,7 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
           ])}
         />
       </Grid>
-      <Grid item xs={2} className="item">
+      <Grid size={2} className="item">
         <NumberInput
           module="payroll"
           label={formatMessage('benefitConsumption.amount')}

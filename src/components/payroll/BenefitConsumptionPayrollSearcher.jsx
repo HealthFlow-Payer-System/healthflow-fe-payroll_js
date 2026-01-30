@@ -176,7 +176,7 @@ function BenefitConsumptionPayrollSearcher({
     <div>
       {fetchedBenefitsSummary && (
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid size={4}>
           <Paper elevation={3} style={{ padding: '20px' }}>
             <Typography variant="h6" gutterBottom>
               {formatMessage('payroll.summary.totalNumberOfBenefits')}
@@ -186,7 +186,7 @@ function BenefitConsumptionPayrollSearcher({
             </Typography>
           </Paper>
         </Grid>
-        <Grid item xs={4}>
+        <Grid size={4}>
           <Paper elevation={3} style={{ padding: '20px' }}>
             <Typography variant="h6" gutterBottom>
               {formatMessage('payroll.summary.totalAmountDue')}
@@ -196,7 +196,7 @@ function BenefitConsumptionPayrollSearcher({
             </Typography>
           </Paper>
         </Grid>
-        <Grid item xs={4}>
+        <Grid size={4}>
           <Paper elevation={3} style={{ padding: '20px' }}>
             <Typography variant="h6" gutterBottom>
               {formatMessage('payroll.summary.totalAmountReceived')}
@@ -251,4 +251,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   dispatch,
 );
 
+export { BenefitConsumptionPayrollSearcher };
 export default connect(mapStateToProps, mapDispatchToProps)(BenefitConsumptionPayrollSearcher);

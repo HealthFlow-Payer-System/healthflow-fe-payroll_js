@@ -77,7 +77,7 @@ function AdditionalFieldsDialog({
             >
               <Grid container className="item">
                 {jsonExtFields?.map((jsonExtField) => (
-                  <Grid item xs={6} className="item">
+                  <Grid size={6} className="item">
                     {renderInputComponent(MODULE_NAME, jsonExtField)}
                   </Grid>
                 ))}
@@ -122,6 +122,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
+export { StyledAdditionalFieldsDialog };
 export default injectIntl(
   connect(mapStateToProps, mapDispatchToProps)(AdditionalFieldsDialog),
 );

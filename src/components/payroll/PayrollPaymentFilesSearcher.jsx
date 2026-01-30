@@ -120,4 +120,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchPayrollPaymentFiles,
 }, dispatch);
 
+export { PayrollPaymentFilesSearcher };
 export default connect(mapStateToProps, mapDispatchToProps)(PayrollPaymentFilesSearcher);

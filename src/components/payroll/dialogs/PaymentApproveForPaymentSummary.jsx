@@ -152,7 +152,7 @@ function PaymentApproveForPaymentDialog({
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2}>
-            <Grid item xs={4}>
+            <Grid size={4}>
               <Paper elevation={3} style={{ padding: '20px' }}>
                 <Typography variant="h6" gutterBottom>
                   {formatMessage('payroll.summary.selectedBeneficiaries')}
@@ -162,7 +162,7 @@ function PaymentApproveForPaymentDialog({
                 </Typography>
               </Paper>
             </Grid>
-            <Grid item xs={4}>
+            <Grid size={4}>
               <Paper elevation={3} style={{ padding: '20px' }}>
                 <Typography variant="h6" gutterBottom>
                   {formatMessage('payroll.summary.totalAmountForInvoice')}
@@ -172,7 +172,7 @@ function PaymentApproveForPaymentDialog({
                 </Typography>
               </Paper>
             </Grid>
-            <Grid item xs={4}>
+            <Grid size={4}>
               <Paper elevation={3} style={{ padding: '20px' }}>
                 <Typography variant="h6" gutterBottom>
                   {formatMessage('payroll.summary.deliveredReconciliation')}
@@ -285,4 +285,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   makePaymentForPayroll,
 }, dispatch);
 
+export { PaymentApproveForPaymentDialog };
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentApproveForPaymentDialog);

@@ -156,4 +156,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   coreConfirm,
 }, dispatch);
 
+export { PayrollSearcherPending };
 export default connect(mapStateToProps, mapDispatchToProps)(PayrollSearcherPending);

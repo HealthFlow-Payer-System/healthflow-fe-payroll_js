@@ -138,7 +138,7 @@ function AdvancedFiltersRowValue({
           </span>
         </div>
       ) : (<></>)}
-      <Grid item xs={3} className="item">
+      <Grid size={3} className="item">
         <CustomFilterFieldStatusPicker
           module="payroll"
           label="payroll.advancedFilters.field"
@@ -149,7 +149,7 @@ function AdvancedFiltersRowValue({
         />
       </Grid>
       {currentFilter.field !== '' ? (
-        <Grid item xs={3} className="item">
+        <Grid size={3} className="item">
           <CustomFilterTypeStatusPicker
             module="payroll"
             label="payroll.advancedFilters.filter"
@@ -162,7 +162,7 @@ function AdvancedFiltersRowValue({
         </Grid>
       ) : (<></>)}
       {currentFilter.field !== '' && currentFilter.filter !== '' ? (
-        <Grid item xs={3} className="item">
+        <Grid size={3} className="item">
           {renderInputBasedOnType(currentFilter.type)}
         </Grid>
       ) : (<></>)}
@@ -170,4 +170,5 @@ function AdvancedFiltersRowValue({
   );
 }
 
+export { StyledAdvancedFiltersRowValue };
 export default injectIntl(connect(null, null)(AdvancedFiltersRowValue));

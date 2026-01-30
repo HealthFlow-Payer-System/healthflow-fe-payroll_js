@@ -65,7 +65,7 @@ function BenefitConsumptionFilterModal({ filters, onChangeFilters }) {
   return (
     <StyledBenefitConsumptionFilterModal>
       <Grid container className="form">
-        <Grid item xs={2} className="item">
+        <Grid size={2} className="item">
           <TextInput
             module="payroll"
             label="benefitConsumption.individual.firstName"
@@ -73,7 +73,7 @@ function BenefitConsumptionFilterModal({ filters, onChangeFilters }) {
             onChange={onChangeStringFilter('benefit_Individual_FirstName', CONTAINS_LOOKUP)}
           />
         </Grid>
-        <Grid item xs={2} className="item">
+        <Grid size={2} className="item">
           <TextInput
             module="payroll"
             label="benefitConsumption.individual.lastName"
@@ -81,7 +81,7 @@ function BenefitConsumptionFilterModal({ filters, onChangeFilters }) {
             onChange={onChangeStringFilter('benefit_Individual_LastName', CONTAINS_LOOKUP)}
           />
         </Grid>
-        <Grid item xs={2} className="item">
+        <Grid size={2} className="item">
           <NumberInput
             module="payroll"
             label={formatMessage('benefitConsumption.amount')}
@@ -90,7 +90,7 @@ function BenefitConsumptionFilterModal({ filters, onChangeFilters }) {
             onChange={onChangeFilter('bill_AmountTotal')}
           />
         </Grid>
-        <Grid item xs={2} className="item">
+        <Grid size={2} className="item">
           <TextInput
             module="payroll"
             label="benefitConsumption.receipt"
@@ -98,7 +98,7 @@ function BenefitConsumptionFilterModal({ filters, onChangeFilters }) {
             onChange={onChangeStringFilter('benefit_Receipt', CONTAINS_LOOKUP)}
           />
         </Grid>
-        <Grid item xs={2} className="item">
+        <Grid size={2} className="item">
           <PublishedComponent
             pubRef="core.DatePicker"
             module="payroll"
@@ -113,7 +113,7 @@ function BenefitConsumptionFilterModal({ filters, onChangeFilters }) {
             ])}
           />
         </Grid>
-        <Grid item xs={2} className="item">
+        <Grid size={2} className="item">
           <PublishedComponent
             pubRef="core.DatePicker"
             module="payroll"

@@ -39,7 +39,7 @@ function PaymentPointFilter({
 
   const filterValue = (filterName) => filters?.[filterName]?.value ?? null;
 
-  const filterTextFieldValue = (filterName) => filters?.[filterName]?.value ?? EMPTY_STRING;
+  const filterTextFieldValue = (filterName) => filters?.[filterName]?.value || EMPTY_STRING;
 
   const onChangeStringFilter = (filterName, lookup = null) => (value) => {
     if (lookup) {
@@ -68,7 +68,7 @@ function PaymentPointFilter({
           module="payroll"
           id="PaymentPointFilter.location"
           field={(
-            <Grid xs={12}>
+            <Grid size={12}>
               <PublishedComponent
                 pubRef="location.DetailedLocationFilter"
                 withNull
@@ -83,7 +83,7 @@ function PaymentPointFilter({
           module="payroll"
           id="admin.PaymentPointManagerPicker"
           field={(
-            <Grid className="item" xs={3}>
+            <Grid className="item" size={3}>
               <PublishedComponent
                 pubRef="admin.PaymentPointManagerPicker"
                 value={filterValue('ppm_Id')}
@@ -100,10 +100,10 @@ function PaymentPointFilter({
             </Grid>
           )}
         />
-        <Grid xs={3} className="item">
+        <Grid size={3} className="item">
           <TextInput
             module="payroll"
-            label={formatMessage('paymentPoint.name')}
+            label="paymentPoint.name"
             value={filterTextFieldValue('name')}
             onChange={onChangeStringFilter('name', CONTAINS_LOOKUP)}
           />
@@ -112,12 +112,12 @@ function PaymentPointFilter({
           module="payroll"
           id="paymentPointFilter.isDeleted"
           field={(
-            <Grid xs={12} className="item">
+            <Grid size={12} className="item">
               <FormControlLabel
                 control={(
                   <Checkbox
                     color="primary"
-                    checked={filters?.isDeleted?.value}
+                    checked={!!filters?.isDeleted?.value}
                     onChange={() => onChangeFilters([
                       {
                         id: 'isDeleted',

@@ -222,6 +222,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchCustomFilter,
 }, dispatch);
 
+export { StyledAdvancedFiltersDialog };
 export default injectIntl(
   connect(mapStateToProps, mapDispatchToProps)(AdvancedFiltersDialog),
 );

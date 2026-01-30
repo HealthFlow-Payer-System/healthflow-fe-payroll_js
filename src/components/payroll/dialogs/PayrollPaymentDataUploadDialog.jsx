@@ -111,9 +111,9 @@ function PayrollPaymentDataUploadDialog({
             <div
               style={{ backgroundColor: '#DFEDEF', paddingLeft: '10px', paddingBottom: '10px' }}
             >
-              <Grid item>
+              <Grid>
                 <Grid container spacing={4} direction="column">
-                  <Grid item>
+                  <Grid>
                     <Input
                       onChange={(event) => handleFieldChange('paymentData', 'file', event.target.files[0])}
                       required
@@ -176,6 +176,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
+export { StyledPayrollPaymentDataUploadDialog };
 export default injectIntl(
   connect(mapStateToProps, mapDispatchToProps)(PayrollPaymentDataUploadDialog),
 );

@@ -22,7 +22,7 @@ class PaymentPointHeadPanel extends FormPanel {
     const paymentPoint = { ...edited };
     return (
       <StyledPaymentPointHeadPanel container className="item">
-        <Grid xs={12}>
+        <Grid size={12}>
           <PublishedComponent
             pubRef="location.DetailedLocation"
             withNull
@@ -33,7 +33,7 @@ class PaymentPointHeadPanel extends FormPanel {
             onChange={(locations) => this.updateAttribute('location', locations)}
           />
         </Grid>
-        <Grid xs={3} className="item">
+        <Grid size={3} className="item">
           <PublishedComponent
             pubRef="admin.PaymentPointManagerPicker"
             required
@@ -44,7 +44,7 @@ class PaymentPointHeadPanel extends FormPanel {
             onChange={(ppm) => this.updateAttribute('ppm', ppm)}
           />
         </Grid>
-        <Grid xs={3} className="item">
+        <Grid size={3} className="item">
           <TextInput
             module="payroll"
             label="paymentPoint.name"
@@ -60,4 +60,5 @@ class PaymentPointHeadPanel extends FormPanel {
   }
 }
 
+export { StyledPaymentPointHeadPanel };
 export default withModulesManager(injectIntl(PaymentPointHeadPanel));

@@ -156,4 +156,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   coreConfirm,
 }, dispatch);
 
+export { PayrollSearcherReconciled };
 export default connect(mapStateToProps, mapDispatchToProps)(PayrollSearcherReconciled);

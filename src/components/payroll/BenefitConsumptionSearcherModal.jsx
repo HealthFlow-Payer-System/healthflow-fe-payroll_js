@@ -288,4 +288,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   dispatch,
 );
 
+export { BenefitConsumptionSearcherModal };
 export default connect(mapStateToProps, mapDispatchToProps)(BenefitConsumptionSearcherModal);

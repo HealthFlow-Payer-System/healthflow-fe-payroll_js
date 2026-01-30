@@ -54,7 +54,11 @@ function PayrollSearcher({
     );
   };
 
-  useEffect(() => payrollToDelete && openDeletePayrollConfirmDialog(), [payrollToDelete]);
+  useEffect(() => {
+    if (payrollToDelete) {
+      openDeletePayrollConfirmDialog();
+    }
+  }, [payrollToDelete]);
 
   useEffect(() => {
     if (payrollToDelete && confirmed) {
@@ -197,4 +201,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   coreConfirm,
 }, dispatch);
 
+export { PayrollSearcher };
 export default connect(mapStateToProps, mapDispatchToProps)(PayrollSearcher);

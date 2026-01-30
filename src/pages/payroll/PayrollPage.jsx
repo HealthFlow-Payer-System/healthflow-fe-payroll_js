@@ -199,4 +199,5 @@ const mapStateToProps = (state, props) => ({
   payroll: state.payroll.payroll,
 });
 
+export { StyledPayrollPage };
 export default connect(mapStateToProps, mapDispatchToProps)(PayrollPage);

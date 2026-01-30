@@ -53,7 +53,11 @@ function PaymentPointSearcher({
     );
   };
 
-  useEffect(() => paymentPointToDelete && openDeletePaymentPointConfirmDialog(), [paymentPointToDelete]);
+  useEffect(() => {
+    if (paymentPointToDelete) {
+      openDeletePaymentPointConfirmDialog();
+    }
+  }, [paymentPointToDelete]);
 
   useEffect(() => {
     if (paymentPointToDelete && confirmed) {
@@ -186,4 +190,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   coreConfirm,
 }, dispatch);
 
+export { PaymentPointSearcher };
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentPointSearcher);

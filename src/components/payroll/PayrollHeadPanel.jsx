@@ -92,7 +92,7 @@ class PayrollHeadPanel extends FormPanel {
     return (
       <>
         <Grid container className="item">
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <TextInput
               module="payroll"
               label={formatMessage(intl, 'payroll', 'paymentPoint.name')}
@@ -102,7 +102,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={isPayrollFromFailedInvoices ? !isPayrollFromFailedInvoices : readOnly}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PublishedComponent
               pubRef="contributionPlan.PaymentPlanPicker"
               required
@@ -113,7 +113,7 @@ class PayrollHeadPanel extends FormPanel {
               benefitPlanId={benefitPlanId}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PublishedComponent
               pubRef="payroll.PaymentPointPicker"
               withLabel
@@ -124,7 +124,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={readOnly}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PublishedComponent
               pubRef="paymentCycle.PaymentCyclePicker"
               withLabel
@@ -137,7 +137,7 @@ class PayrollHeadPanel extends FormPanel {
             />
           </Grid>
           {readOnly && !isPayrollFromFailedInvoices && (
-            <Grid item xs={3} className="item">
+            <Grid size={3} className="item">
               <PayrollStatusPicker
                 required
                 withNull={false}
@@ -146,7 +146,7 @@ class PayrollHeadPanel extends FormPanel {
               />
             </Grid>
           )}
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PaymentMethodPicker
               required
               withNull={false}
@@ -156,7 +156,7 @@ class PayrollHeadPanel extends FormPanel {
               label={formatMessage(intl, 'payroll', 'paymentMethod')}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PublishedComponent
               pubRef="core.DatePicker"
               module="payroll"
@@ -167,7 +167,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={readOnly}
             />
           </Grid>
-          <Grid item xs={3} className="item">
+          <Grid size={3} className="item">
             <PublishedComponent
               pubRef="core.DatePicker"
               module="payroll"
@@ -224,4 +224,5 @@ class PayrollHeadPanel extends FormPanel {
   }
 }
 
+export { StyledPayrollHeadPanel };
 export default withModulesManager(injectIntl(PayrollHeadPanel));

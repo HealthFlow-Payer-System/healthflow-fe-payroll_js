@@ -64,4 +64,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   fetchPaymentMethods,
 }, dispatch);
 
+export { PaymentMethodPicker };
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentMethodPicker);
