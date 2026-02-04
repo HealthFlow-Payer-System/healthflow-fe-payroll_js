@@ -19,8 +19,8 @@ import PayrollStatusPicker from './PayrollStatusPicker';
 import PaymentMethodPicker from '../../pickers/PaymentMethodPicker';
 
 const StyledPayrollHeadPanel = styled('div')(({ theme }) => ({
-  '& .tableTitle': theme.table.title,
-  '& .item': theme.paper.item,
+  '& .tableTitle': theme.table?.title ?? {},
+  '& .item': theme.paper?.item ?? {},
   '& .fullHeight': {
     height: '100%',
   },

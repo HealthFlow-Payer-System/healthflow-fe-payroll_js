@@ -21,8 +21,8 @@ import {
 import PayrollSearcher from '../../components/payroll/PayrollSearcher';
 
 const StyledPayrollsPage = styled('div')(({ theme }) => ({
-  '&.page': theme.page,
-  '& .fab': theme.fab,
+  '&.page': theme.page ?? {},
+  '& .fab': theme.fab ?? {},
 }));
 
 function PayrollsPage() {

@@ -21,8 +21,8 @@ import {
 import PaymentPointSearcher from '../../components/payment-point/PaymentPointSearcher';
 
 const StyledPaymentPointsPage = styled('div')(({ theme }) => ({
-  '&.page': theme.page,
-  '& .fab': theme.fab,
+  '&.page': theme.page ?? {},
+  '& .fab': theme.fab ?? {},
 }));
 
 function PaymentPointsPage() {

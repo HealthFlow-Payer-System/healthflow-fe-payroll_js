@@ -28,7 +28,7 @@ import PayrollHeadPanel from '../../components/payroll/PayrollHeadPanel';
 import PayrollTab from '../../components/payroll/PayrollTab';
 
 const StyledPayrollPage = styled('div')(({ theme }) => ({
-  '&.page': theme.page,
+  '&.page': theme.page ?? {},
 }));
 
 function PayrollPage({

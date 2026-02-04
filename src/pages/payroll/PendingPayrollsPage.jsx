@@ -15,8 +15,8 @@ import {
 import PayrollSearcherPending from '../../components/payroll/PayrollSearcherPending';
 
 const StyledPendingPayrollsPage = styled('div')(({ theme }) => ({
-  '&.page': theme.page,
-  '& .fab': theme.fab,
+  '&.page': theme.page ?? {},
+  '& .fab': theme.fab ?? {},
 }));
 
 function PendingPayrollsPage() {

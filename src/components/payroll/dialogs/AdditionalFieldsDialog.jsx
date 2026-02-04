@@ -17,7 +17,7 @@ import { bindActionCreators } from 'redux';
 import { MODULE_NAME } from '../../../constants';
 
 const StyledAdditionalFieldsDialog = styled('div')(({ theme }) => ({
-  '& .item': theme.paper.item,
+  '& .item': theme.paper?.item ?? {},
 }));
 
 function AdditionalFieldsDialog({

@@ -13,7 +13,7 @@ import {
 import { MAX_LENGTH } from '../../constants';
 
 const StyledPaymentPointHeadPanel = styled(Grid)(({ theme }) => ({
-  '&.item': theme.paper.item,
+  '&.item': theme.paper?.item ?? {},
 }));
 
 class PaymentPointHeadPanel extends FormPanel {

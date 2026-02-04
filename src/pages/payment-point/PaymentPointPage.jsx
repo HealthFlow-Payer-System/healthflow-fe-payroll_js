@@ -30,8 +30,8 @@ import { mutationLabel, pageTitle } from '../../utils/string-utils';
 import PaymentPointHeadPanel from './PaymentPointHeadPanel';
 
 const StyledPaymentPointPage = styled('div')(({ theme }) => ({
-  '&.page': theme.page,
-  '&.lockedPage': theme.page.locked,
+  '&.page': theme.page ?? {},
+  '&.lockedPage': theme.page?.locked ?? {},
 }));
 
 function PaymentPointPage({

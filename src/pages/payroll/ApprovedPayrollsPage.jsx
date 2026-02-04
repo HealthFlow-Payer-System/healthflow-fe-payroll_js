@@ -15,8 +15,8 @@ import {
 import PayrollSearcherApproved from '../../components/payroll/PayrollSearcherApproved';
 
 const StyledApprovedPayrollsPage = styled('div')(({ theme }) => ({
-  '&.page': theme.page,
-  '& .fab': theme.fab,
+  '&.page': theme.page ?? {},
+  '& .fab': theme.fab ?? {},
 }));
 
 function ApprovedPayrollsPage() {
