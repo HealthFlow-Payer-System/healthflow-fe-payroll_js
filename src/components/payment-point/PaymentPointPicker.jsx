@@ -61,7 +61,6 @@ function PaymentPointPicker({
       renderInput={(inputProps) => (
         <TextField
           {...inputProps}
-          variant="standard"
           required={required}
           label={withLabel && formatMessage('paymentPointPicker.label')}
           placeholder={withPlaceholder && formatMessage('paymentPointPicker.placeholder')}
