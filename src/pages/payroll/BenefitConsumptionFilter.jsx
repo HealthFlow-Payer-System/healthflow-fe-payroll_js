@@ -10,13 +10,14 @@ import {
   useTranslations,
   TextInput,
   NumberInput,
+  GRID_RESPONSIVE_STANDARD,
 } from '@openimis/fe-core';
 import { CONTAINS_LOOKUP, DEFAULT_DEBOUNCE_TIME, EMPTY_STRING } from '../../constants';
 import BenefitConsumptionStatusPicker from '../../pickers/BenefitConsumptionStatusPicker';
 
 const StyledBenefitConsumptionFilter = styled('div')(({ theme }) => ({
   '& .form': {
-    padding: 0,
+    padding: theme.spacing(1),
   },
   '& .item': {
     padding: theme.spacing(1),
@@ -66,95 +67,95 @@ function BenefitConsumptionFilter({ filters, onChangeFilters }) {
   return (
     <StyledBenefitConsumptionFilter>
       <Grid container className="form">
-        <Grid size={2} className="item">
-        <TextInput
-          module="payroll"
-          label="benefitConsumption.individual.firstName"
-          value={filterTextFieldValue('individual_FirstName')}
-          onChange={onChangeStringFilter('individual_FirstName', CONTAINS_LOOKUP)}
-        />
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <TextInput
+            module="payroll"
+            label="benefitConsumption.individual.firstName"
+            value={filterTextFieldValue('individual_FirstName')}
+            onChange={onChangeStringFilter('individual_FirstName', CONTAINS_LOOKUP)}
+          />
+        </Grid>
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <TextInput
+            module="payroll"
+            label="benefitConsumption.individual.lastName"
+            value={filterTextFieldValue('individual_LastName')}
+            onChange={onChangeStringFilter('individual_LastName', CONTAINS_LOOKUP)}
+          />
+        </Grid>
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <TextInput
+            module="payroll"
+            label="benefitConsumption.photo"
+            value={filterTextFieldValue('photo')}
+            onChange={onChangeStringFilter('photo', CONTAINS_LOOKUP)}
+          />
+        </Grid>
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <TextInput
+            module="payroll"
+            label="benefitConsumption.code"
+            value={filterTextFieldValue('code')}
+            onChange={onChangeStringFilter('code', CONTAINS_LOOKUP)}
+          />
+        </Grid>
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <PublishedComponent
+            pubRef="core.DatePicker"
+            module="payroll"
+            label={formatMessage('benefitConsumption.dateDue')}
+            value={filterValue('dateDue')}
+            onChange={(v) => onChangeFilters([
+              {
+                id: 'dateDue',
+                value: v,
+                filter: `dateDue: "${v}"`,
+              },
+            ])}
+          />
+        </Grid>
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <TextInput
+            module="payroll"
+            label="benefitConsumption.receipt"
+            value={filterTextFieldValue('receipt')}
+            onChange={onChangeStringFilter('receipt', CONTAINS_LOOKUP)}
+          />
+        </Grid>
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <TextInput
+            module="payroll"
+            label="benefitConsumption.type"
+            value={filterTextFieldValue('type')}
+            onChange={onChangeStringFilter('type', CONTAINS_LOOKUP)}
+          />
+        </Grid>
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <BenefitConsumptionStatusPicker
+            module="payroll"
+            label={formatMessage('benefitConsumptions.status.label')}
+            withNull
+            nullLabel={formatMessage('tooltip.any')}
+            value={filterValue('status')}
+            onChange={(value) => onChangeFilters([
+              {
+                id: 'status',
+                value,
+                filter: `status: ${value}`,
+              },
+            ])}
+          />
+        </Grid>
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
+          <NumberInput
+            module="payroll"
+            label={formatMessage('benefitConsumption.amount')}
+            min={0}
+            value={filterValue('amount')}
+            onChange={onChangeFilter('amount')}
+          />
+        </Grid>
       </Grid>
-      <Grid size={2} className="item">
-        <TextInput
-          module="payroll"
-          label="benefitConsumption.individual.lastName"
-          value={filterTextFieldValue('individual_LastName')}
-          onChange={onChangeStringFilter('individual_LastName', CONTAINS_LOOKUP)}
-        />
-      </Grid>
-      <Grid size={2} className="item">
-        <TextInput
-          module="payroll"
-          label="benefitConsumption.photo"
-          value={filterTextFieldValue('photo')}
-          onChange={onChangeStringFilter('photo', CONTAINS_LOOKUP)}
-        />
-      </Grid>
-      <Grid size={2} className="item">
-        <TextInput
-          module="payroll"
-          label="benefitConsumption.code"
-          value={filterTextFieldValue('code')}
-          onChange={onChangeStringFilter('code', CONTAINS_LOOKUP)}
-        />
-      </Grid>
-      <Grid size={2} className="item">
-        <PublishedComponent
-          pubRef="core.DatePicker"
-          module="payroll"
-          label={formatMessage('benefitConsumption.dateDue')}
-          value={filterValue('dateDue')}
-          onChange={(v) => onChangeFilters([
-            {
-              id: 'dateDue',
-              value: v,
-              filter: `dateDue: "${v}"`,
-            },
-          ])}
-        />
-      </Grid>
-      <Grid size={2} className="item">
-        <TextInput
-          module="payroll"
-          label="benefitConsumption.receipt"
-          value={filterTextFieldValue('receipt')}
-          onChange={onChangeStringFilter('receipt', CONTAINS_LOOKUP)}
-        />
-      </Grid>
-      <Grid size={2} className={classes.item}>
-        <TextInput
-          module="payroll"
-          label="benefitConsumption.type"
-          value={filterTextFieldValue('type')}
-          onChange={onChangeStringFilter('type', CONTAINS_LOOKUP)}
-        />
-      </Grid>
-      <Grid size={2} className="item">
-        <BenefitConsumptionStatusPicker
-          module="payroll"
-          label={formatMessage('benefitConsumptions.status.label')}
-          withNull
-          nullLabel={formatMessage('tooltip.any')}
-          value={filterValue('status')}
-          onChange={(value) => onChangeFilters([
-            {
-              id: 'status',
-              value,
-              filter: `status: ${value}`,
-            },
-          ])}
-        />
-      </Grid>
-      <Grid size={2} className="item">
-        <NumberInput
-          module="payroll"
-          label={formatMessage('benefitConsumption.amount')}
-          min={0}
-          value={filterValue('amount')}
-          onChange={onChangeFilter('amount')}
-        />
-      </Grid>
-    </Grid>
     </StyledBenefitConsumptionFilter>
   );
 }

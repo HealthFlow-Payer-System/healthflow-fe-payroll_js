@@ -12,6 +12,7 @@ import {
   TextInput,
   withModulesManager,
   FormattedMessage,
+  GRID_RESPONSIVE_STANDARD,
 } from '@openimis/fe-core';
 import AdvancedFiltersDialog from './AdvancedFiltersDialog';
 import { CLEARED_STATE_FILTER } from '../../constants';
@@ -20,7 +21,13 @@ import PaymentMethodPicker from '../../pickers/PaymentMethodPicker';
 
 const StyledPayrollHeadPanel = styled('div')(({ theme }) => ({
   '& .tableTitle': theme.table?.title ?? {},
-  '& .item': theme.paper?.item ?? {},
+  '& .form': {
+    padding: theme.spacing(1),
+  },
+  '& .item': {
+    padding: theme.spacing(1),
+    ...(theme.paper?.item ?? {}),
+  },
   '& .fullHeight': {
     height: '100%',
   },
@@ -90,9 +97,9 @@ class PayrollHeadPanel extends FormPanel {
     const payroll = { ...edited };
     const { appliedCustomFilters, appliedFiltersRowStructure } = this.state;
     return (
-      <>
-        <Grid container className="item">
-          <Grid size={3} className="item">
+      <StyledPayrollHeadPanel>
+        <Grid container className="form">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <TextInput
               module="payroll"
               label={formatMessage(intl, 'payroll', 'paymentPoint.name')}
@@ -102,7 +109,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={isPayrollFromFailedInvoices ? !isPayrollFromFailedInvoices : readOnly}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PublishedComponent
               pubRef="contributionPlan.PaymentPlanPicker"
               required
@@ -113,7 +120,7 @@ class PayrollHeadPanel extends FormPanel {
               benefitPlanId={benefitPlanId}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PublishedComponent
               pubRef="payroll.PaymentPointPicker"
               withLabel
@@ -124,7 +131,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={readOnly}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PublishedComponent
               pubRef="paymentCycle.PaymentCyclePicker"
               withLabel
@@ -137,7 +144,7 @@ class PayrollHeadPanel extends FormPanel {
             />
           </Grid>
           {readOnly && !isPayrollFromFailedInvoices && (
-            <Grid size={3} className="item">
+            <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
               <PayrollStatusPicker
                 required
                 withNull={false}
@@ -146,7 +153,7 @@ class PayrollHeadPanel extends FormPanel {
               />
             </Grid>
           )}
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PaymentMethodPicker
               required
               withNull={false}
@@ -156,7 +163,7 @@ class PayrollHeadPanel extends FormPanel {
               label={formatMessage(intl, 'payroll', 'paymentMethod')}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PublishedComponent
               pubRef="core.DatePicker"
               module="payroll"
@@ -167,7 +174,7 @@ class PayrollHeadPanel extends FormPanel {
               readOnly={readOnly}
             />
           </Grid>
-          <Grid size={3} className="item">
+          <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <PublishedComponent
               pubRef="core.DatePicker"
               module="payroll"
@@ -195,7 +202,7 @@ class PayrollHeadPanel extends FormPanel {
                   </div>
                 )}
                 <Divider />
-                <Grid container className="item">
+                <Grid container className="form">
 
                   <AdvancedFiltersDialog
                     object={payroll?.paymentPlan?.benefitPlan
@@ -219,7 +226,7 @@ class PayrollHeadPanel extends FormPanel {
               <Divider />
             </>
           )}
-      </>
+      </StyledPayrollHeadPanel>
     );
   }
 }

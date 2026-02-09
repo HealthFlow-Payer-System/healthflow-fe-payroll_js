@@ -24,8 +24,14 @@ import {
   BOOL_OPTIONS,
 } from '../../constants';
 
-const StyledAdvancedFiltersRowValue = styled(Grid)(({ theme }) => ({
-  '&.item': theme.paper?.item ?? {},
+const StyledAdvancedFiltersRowValue = styled('div')(({ theme }) => ({
+  '& .form': {
+    padding: theme.spacing(1),
+  },
+  '& .item': {
+    padding: theme.spacing(1),
+    ...(theme.paper?.item ?? {}),
+  },
 }));
 
 function AdvancedFiltersRowValue({
@@ -115,12 +121,13 @@ function AdvancedFiltersRowValue({
   };
 
   return (
-    <StyledAdvancedFiltersRowValue
-      container
-      direction="row"
-      className="item"
-      style={{ backgroundColor: '#DFEDEF' }}
-    >
+    <StyledAdvancedFiltersRowValue>
+      <Grid
+        container
+        direction="row"
+        className="form"
+        style={{ backgroundColor: '#DFEDEF' }}
+      >
       {filters.length > 0 && !readOnly ? (
         <div style={{
           backgroundColor: '#DFEDEF', width: '10px', height: '25px', marginTop: '25px',
@@ -166,6 +173,7 @@ function AdvancedFiltersRowValue({
           {renderInputBasedOnType(currentFilter.type)}
         </Grid>
       ) : (<></>)}
+      </Grid>
     </StyledAdvancedFiltersRowValue>
   );
 }

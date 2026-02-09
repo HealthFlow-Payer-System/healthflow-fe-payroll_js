@@ -11,17 +11,15 @@ import {
   useTranslations,
   PublishedComponent,
   decodeId,
+  GRID_RESPONSIVE_STANDARD,
 } from '@openimis/fe-core';
 import {
-  CONTAINS_LOOKUP,
-  DEFAULT_DEBOUNCE_TIME,
-  EMPTY_STRING,
-  MODULE_NAME,
+  CONTAINS_LOOKUP, DEFAULT_DEBOUNCE_TIME, EMPTY_STRING, MODULE_NAME,
 } from '../../constants';
 
 const StyledPaymentPointFilter = styled('div')(({ theme }) => ({
   '& .form': {
-    padding: '0 0 10px 0',
+    padding: theme.spacing(1),
     width: '100%',
   },
   '& .item': {
@@ -29,9 +27,7 @@ const StyledPaymentPointFilter = styled('div')(({ theme }) => ({
   },
 }));
 
-function PaymentPointFilter({
-  filters, onChangeFilters,
-}) {
+function PaymentPointFilter({ filters, onChangeFilters }) {
   const modulesManager = useModulesManager();
   const { formatMessage } = useTranslations(MODULE_NAME, modulesManager);
 
@@ -83,7 +79,7 @@ function PaymentPointFilter({
           module="payroll"
           id="admin.PaymentPointManagerPicker"
           field={(
-            <Grid className="item" size={3}>
+            <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
               <PublishedComponent
                 pubRef="admin.PaymentPointManagerPicker"
                 value={filterValue('ppm_Id')}
@@ -100,7 +96,7 @@ function PaymentPointFilter({
             </Grid>
           )}
         />
-        <Grid size={3} className="item">
+        <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
           <TextInput
             module="payroll"
             label="paymentPoint.name"
@@ -114,6 +110,7 @@ function PaymentPointFilter({
           field={(
             <Grid size={12} className="item">
               <FormControlLabel
+                sx={{ ml: 0 }}
                 control={(
                   <Checkbox
                     color="primary"

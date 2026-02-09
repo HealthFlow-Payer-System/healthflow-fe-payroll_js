@@ -11,7 +11,17 @@ import {
   Grid,
 } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import { fetchPayrollBenefitConsumptions, fetchBenefitsSummary } from '../../actions';
+
+const StyledBenefitConsumptionPayrollSearcher = styled('div')(({ theme }) => ({
+  '& .form': {
+    padding: theme.spacing(1),
+  },
+  '& .item': {
+    padding: theme.spacing(1),
+  },
+}));
 import { DEFAULT_PAGE_SIZE, ROWS_PER_PAGE_OPTIONS } from '../../constants';
 import BenefitConsumptionPayrollFilter from './BenefitConsumptionPayrollFilter';
 
@@ -173,10 +183,10 @@ function BenefitConsumptionPayrollSearcher({
   );
 
   return (
-    <div>
+    <StyledBenefitConsumptionPayrollSearcher>
       {fetchedBenefitsSummary && (
-      <Grid container spacing={2}>
-        <Grid size={4}>
+      <Grid container className="form">
+        <Grid size={4} className="item">
           <Paper elevation={3} style={{ padding: '20px' }}>
             <Typography variant="h6" gutterBottom>
               {formatMessage('payroll.summary.totalNumberOfBenefits')}
@@ -186,7 +196,7 @@ function BenefitConsumptionPayrollSearcher({
             </Typography>
           </Paper>
         </Grid>
-        <Grid size={4}>
+        <Grid size={4} className="item">
           <Paper elevation={3} style={{ padding: '20px' }}>
             <Typography variant="h6" gutterBottom>
               {formatMessage('payroll.summary.totalAmountDue')}
@@ -196,7 +206,7 @@ function BenefitConsumptionPayrollSearcher({
             </Typography>
           </Paper>
         </Grid>
-        <Grid size={4}>
+        <Grid size={4} className="item">
           <Paper elevation={3} style={{ padding: '20px' }}>
             <Typography variant="h6" gutterBottom>
               {formatMessage('payroll.summary.totalAmountReceived')}
@@ -229,7 +239,7 @@ function BenefitConsumptionPayrollSearcher({
         rowIdentifier={rowIdentifier}
         defaultFilters={defaultFilters()}
       />
-    </div>
+    </StyledBenefitConsumptionPayrollSearcher>
   );
 }
 
