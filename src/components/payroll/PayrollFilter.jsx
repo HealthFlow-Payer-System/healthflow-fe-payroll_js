@@ -12,6 +12,7 @@ import {
   PublishedComponent,
   decodeId,
   GRID_RESPONSIVE_STANDARD,
+  GRID_RESPONSIVE_SMALL,
 } from '@openimis/fe-core';
 import {
   CONTAINS_LOOKUP,
@@ -156,7 +157,7 @@ function PayrollFilter({
           module="payroll"
           id="payrollFilter.showHistory"
           field={(
-            <Grid size={12} className="item">
+            <Grid size={GRID_RESPONSIVE_SMALL} className="item">
               <FormControlLabel
                 control={(
                   <Checkbox

@@ -12,6 +12,7 @@ import {
   PublishedComponent,
   decodeId,
   GRID_RESPONSIVE_STANDARD,
+  GRID_RESPONSIVE_SMALL,
 } from '@openimis/fe-core';
 import {
   CONTAINS_LOOKUP, DEFAULT_DEBOUNCE_TIME, EMPTY_STRING, MODULE_NAME,
@@ -108,7 +109,7 @@ function PaymentPointFilter({ filters, onChangeFilters }) {
           module="payroll"
           id="paymentPointFilter.isDeleted"
           field={(
-            <Grid size={12} className="item">
+            <Grid size={GRID_RESPONSIVE_SMALL} className="item">
               <FormControlLabel
                 sx={{ ml: 0 }}
                 control={(
