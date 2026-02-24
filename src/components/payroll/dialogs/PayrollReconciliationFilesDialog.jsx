@@ -33,7 +33,6 @@ function PayrollReconciliationFilesDialog({
         onClick={handleOpen}
         variant="contained"
         color="primary"
-        className={classes.button}
       >
         {formatMessage('payroll.viewReconciliationFiles')}
       </Button>

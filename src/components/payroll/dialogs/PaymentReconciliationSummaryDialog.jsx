@@ -103,7 +103,6 @@ function PaymentReconcilationSummarytDialog({
         onClick={handleOpen}
         variant="contained"
         color="primary"
-        className={classes.button}
       >
         {formatMessage('payroll.viewReconciliationSummary')}
       </Button>
