@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { IconButton, Tooltip } from '@mui/material';
-import DownloadIcon from '@mui/icons-material/CloudDownload';
 
 import {
   Searcher,
   useModulesManager,
   useTranslations,
+  GetIconComponent,
 } from '@openimis/fe-core';
 import {
   DEFAULT_PAGE_SIZE, MODULE_NAME,
@@ -17,6 +17,7 @@ import {
 import { fetchPayrollPaymentFiles } from '../../actions';
 import downloadPayroll from '../../utils/export';
 import AdditionalFieldsDialog from './dialogs/AdditionalFieldsDialog';
+const DownloadIcon = GetIconComponent("CloudDownload");
 
 function PayrollPaymentFilesSearcher({
   fetchingPayrollFiles,

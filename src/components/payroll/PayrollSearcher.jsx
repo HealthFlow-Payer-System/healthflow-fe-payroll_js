@@ -3,8 +3,6 @@ import { connect, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { IconButton, Tooltip } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
   Searcher,
@@ -14,6 +12,7 @@ import {
   coreConfirm,
   clearConfirm,
   journalize,
+  GetIconComponent,
 } from '@openimis/fe-core';
 import PayrollFilter from './PayrollFilter';
 import {
@@ -22,6 +21,8 @@ import {
 } from '../../constants';
 import { mutationLabel, pageTitle } from '../../utils/string-utils';
 import { fetchPayrolls, deletePayrolls } from '../../actions';
+const VisibilityIcon = GetIconComponent("Visibility");
+const DeleteIcon = GetIconComponent("Delete");
 
 function PayrollSearcher({
   deletePayrolls,

@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
   Form,
@@ -13,6 +12,7 @@ import {
   coreConfirm,
   clearConfirm,
   journalize,
+  GetIconComponent,
 } from '@openimis/fe-core';
 import {
   clearPaymentPoint,
@@ -28,6 +28,7 @@ import {
 import { ACTION_TYPE } from '../../reducer';
 import { mutationLabel, pageTitle } from '../../utils/string-utils';
 import PaymentPointHeadPanel from './PaymentPointHeadPanel';
+const DeleteIcon = GetIconComponent("Delete");
 
 const StyledPaymentPointPage = styled('div')(({ theme }) => ({
   '&.page': theme.page ?? {},

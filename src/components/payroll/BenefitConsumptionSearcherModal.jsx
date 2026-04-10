@@ -2,7 +2,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import PrintIcon from '@mui/icons-material/Print';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Button from '@mui/material/Button';
@@ -13,9 +12,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {
-  Searcher, useModulesManager, useTranslations,
+  GetIconComponent, Searcher, useModulesManager, useTranslations,
 } from '@openimis/fe-core';
-import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined';
+const PhotoCameraOutlinedIcon = GetIconComponent("PhotoCameraOutlined");
 import { fetchBenefitAttachments, deleteBenefitConsumption } from '../../actions';
 import {
   DEFAULT_PAGE_SIZE, ROWS_PER_PAGE_OPTIONS, PAYROLL_STATUS,
@@ -25,6 +24,7 @@ import ErrorSummaryModal from './dialogs/ErrorSummaryModal';
 import { mutationLabel } from '../../utils/string-utils';
 import AdditionalFieldsDialog from './dialogs/AdditionalFieldsDialog';
 import PayrollBenefitPrintTemplate from '../PayrollBenefitPrintTemplate';
+const PrintIcon = GetIconComponent("Print");
 
 function BenefitConsumptionSearcherModal({
   fetchBenefitAttachments,

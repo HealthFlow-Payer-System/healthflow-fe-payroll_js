@@ -8,11 +8,12 @@ import {
   decodeId,
   formatMessage,
   fetchCustomFilter,
+  GetIconComponent,
 } from '@openimis/fe-core';
 import { styled } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import AddCircle from '@mui/icons-material/Add';
+const AddCircle = GetIconComponent("Add");
 import _ from 'lodash';
 import AdvancedFiltersRowValue from './AdvancedFiltersRowValue';
 import { BENEFIT_PLAN, CLEARED_STATE_FILTER } from '../../constants';

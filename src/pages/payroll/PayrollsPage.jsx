@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import { Fab } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import AddIcon from '@mui/icons-material/Add';
 
 import {
   Helmet,
@@ -11,6 +10,7 @@ import {
   useTranslations,
   useHistory,
   withTooltip,
+  GetIconComponent,
 } from '@openimis/fe-core';
 import {
   MODULE_NAME,
@@ -19,6 +19,7 @@ import {
   RIGHT_PAYROLL_SEARCH,
 } from '../../constants';
 import PayrollSearcher from '../../components/payroll/PayrollSearcher';
+const AddIcon = GetIconComponent("Add");
 
 const StyledPayrollsPage = styled('div')(({ theme }) => ({
   '&.page': theme.page ?? {},

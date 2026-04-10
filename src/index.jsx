@@ -3,10 +3,8 @@
 
 import React from 'react';
 
-import PinDrop from '@mui/icons-material/PinDrop';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 
-import { FormattedMessage } from '@openimis/fe-core';
+import { GetIconComponent, FormattedMessage } from '@openimis/fe-core';
 import { RIGHT_PAYMENT_POINT_SEARCH, RIGHT_PAYROLL_CREATE, RIGHT_PAYROLL_SEARCH } from './constants';
 import reducer from './reducer';
 import messages_en from './translations/en.json';
@@ -42,6 +40,8 @@ import { PayrollDeleteTaskItemFormatters, PayrollDeleteTaskTableHeaders } from '
 import { PayrollPaymentFilesTabLabel, PayrollPaymentFilesTabPanel } from './components/payroll/PayrollPaymentFilesTab';
 import PendingPayrollsPage from './pages/payroll/PendingPayrollsPage';
 
+const PinDrop = GetIconComponent("PinDrop");
+const MonetizationOnIcon = GetIconComponent("MonetizationOn");
 const ROUTE_PAYMENT_POINTS = 'paymentPoints';
 const ROUTE_PAYMENT_POINT = 'paymentPoints/paymentPoint';
 const ROUTE_PAYROLLS = 'payrolls';

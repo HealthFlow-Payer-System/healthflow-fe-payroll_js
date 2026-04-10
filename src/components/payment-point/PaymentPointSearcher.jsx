@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect, useSelector } from 'react-redux';
 
 import { IconButton, Tooltip } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
   Searcher,
@@ -14,6 +12,7 @@ import {
   coreConfirm,
   clearConfirm,
   journalize,
+  GetIconComponent,
 } from '@openimis/fe-core';
 import { deletePaymentPoint, fetchPaymentPoints } from '../../actions';
 import {
@@ -21,6 +20,8 @@ import {
 } from '../../constants';
 import { mutationLabel, pageTitle } from '../../utils/string-utils';
 import PaymentPointFilter from './PaymentPointFilter';
+const VisibilityIcon = GetIconComponent("Visibility");
+const DeleteIcon = GetIconComponent("Delete");
 
 function PaymentPointSearcher({
   fetchPaymentPoints,
