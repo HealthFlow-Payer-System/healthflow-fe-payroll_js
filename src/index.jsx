@@ -67,76 +67,93 @@ const DEFAULT_CONFIG = {
     { key: 'payroll.payrollCreateRight', ref: RIGHT_PAYROLL_CREATE },
   ],
   'core.Router': [
-    { path: ROUTE_PAYMENT_POINTS, component: PaymentPointsPage },
-    { path: `${ROUTE_PAYMENT_POINT}/:payment_point_uuid?`, component: PaymentPointPage },
-    { path: ROUTE_PAYROLLS, component: PayrollsPage },
-    { path: ROUTE_PAYROLLS_APPROVED, component: ApprovedPayrollsPage },
-    { path: ROUTE_PAYROLLS_PENDING, component: PendingPayrollsPage },
-    { path: ROUTE_PAYROLLS_RECONCILED, component: ReconciledPayrollsPage },
-    {
-      path: `${ROUTE_PAYROLL}/:payroll_uuid?/:createPayrollFromFailedInvoices?/:benefitPlanId?`,
-      component: PayrollPage,
+    { 
+      path: ROUTE_PAYMENT_POINTS,
+      text: "payroll.payroll.paymentPoint.route",
+      icon: "PinDrop",
+      rights: [RIGHT_PAYMENT_POINT_SEARCH],
+      id: 'legalAndFinance.paymentPoint',
+      component: PaymentPointsPage 
     },
+    { path: `${ROUTE_PAYMENT_POINT}/:payment_point_uuid?`, component: PaymentPointPage },
+    { 
+      path: ROUTE_PAYROLLS,
+      text: "payroll.payroll.payroll.route",
+      icon: "MonetizationOn",
+      rights: [RIGHT_PAYROLL_SEARCH],
+      id: 'legalAndFinance.payrolls',
+      component: PayrollsPage
+    },
+    { 
+      path: ROUTE_PAYROLLS_APPROVED,
+      component: ApprovedPayrollsPage,
+      text: "payroll.payroll.route.payrollsApproved",
+      icon: "MonetizationOn",
+      rights:[RIGHT_PAYROLL_SEARCH],
+      id: 'legalAndFinance.payrollsApproved',
+    },
+    { 
+      path: ROUTE_PAYROLLS_PENDING,
+      text: "payroll.payroll.route.payrollsPending",
+      icon: "MonetizationOn",
+      rights:[RIGHT_PAYROLL_SEARCH],
+      id: 'legalAndFinance.payrollsPending',
+      component: PendingPayrollsPage
+    },
+    { 
+      path: ROUTE_PAYROLLS_RECONCILED,
+      component: ReconciledPayrollsPage,
+      text: "payroll.payroll.route.payrollsReconciled",
+      icon: "MonetizationOn",
+      rights:[RIGHT_PAYROLL_SEARCH],
+      id: 'legalAndFinance.payrollsReconciled',
+    },
+
   ],
   'invoice.MainMenu': [
     {
-      text: <FormattedMessage module="payroll" id="payroll.paymentPoint.route" />,
-      icon: <PinDrop />,
-      route: `/${ROUTE_PAYMENT_POINTS}`,
-      filter: (rights) => rights.includes(RIGHT_PAYMENT_POINT_SEARCH),
-      id: 'legalAndFinance.paymentPoint',
+
+      route: ROUTE_PAYMENT_POINTS,
+
     },
     {
-      text: <FormattedMessage module="payroll" id="payroll.payroll.route" />,
-      icon: <MonetizationOnIcon />,
-      route: `/${ROUTE_PAYROLLS}`,
-      filter: (rights) => rights.includes(RIGHT_PAYROLL_SEARCH),
-      id: 'legalAndFinance.payrolls',
+
+      route: ROUTE_PAYROLLS,
     },
     {
-      text: <FormattedMessage module="payroll" id="payroll.route.payrollsPending" />,
-      icon: <MonetizationOnIcon />,
-      route: `/${ROUTE_PAYROLLS_PENDING}`,
-      filter: (rights) => rights.includes(RIGHT_PAYROLL_SEARCH),
-      id: 'legalAndFinance.payrollsPending',
+
+      route: ROUTE_PAYROLLS_PENDING,
     },
     {
-      text: <FormattedMessage module="payroll" id="payroll.route.payrollsApproved" />,
-      icon: <MonetizationOnIcon />,
-      route: `/${ROUTE_PAYROLLS_APPROVED}`,
-      filter: (rights) => rights.includes(RIGHT_PAYROLL_SEARCH),
-      id: 'legalAndFinance.payrollsApproved',
+      route: ROUTE_PAYROLLS_APPROVED,
     },
     {
-      text: <FormattedMessage module="payroll" id="payroll.route.payrollsReconciled" />,
-      icon: <MonetizationOnIcon />,
-      route: `/${ROUTE_PAYROLLS_RECONCILED}`,
-      filter: (rights) => rights.includes(RIGHT_PAYROLL_SEARCH),
-      id: 'legalAndFinance.payrollsReconciled',
+      route: ROUTE_PAYROLLS_RECONCILED,
+      withDivider: true
     },
   ],
   'payroll.TabPanel.label': [BenefitConsumptionsTabLabel, PayrollTaskTabLabel, PayrollPaymentFilesTabLabel],
   'payroll.TabPanel.panel': [BenefitConsumptionsTabPanel, PayrollTaskTabPanel, PayrollPaymentFilesTabPanel],
   'tasksManagement.tasks': [{
-    text: <FormattedMessage module="payroll" id="payroll.tasks.update.title" />,
+    text: "payroll.payroll.tasks.update.title",
     tableHeaders: PayrollTaskTableHeaders,
     itemFormatters: PayrollTaskItemFormatters,
     taskSource: ['payroll'],
   },
   {
-    text: <FormattedMessage module="payroll" id="payroll.tasks.reconciliation.title" />,
+    text: "payroll.payroll.tasks.reconciliation.title",
     tableHeaders: PayrollReconciliationTaskTableHeaders,
     itemFormatters: PayrollReconciliationTaskItemFormatters,
     taskSource: ['payroll_reconciliation'],
   },
   {
-    text: <FormattedMessage module="payroll" id="payroll.tasks.rejected.title" />,
+    text: "payroll.payroll.tasks.rejected.title",
     tableHeaders: PayrollRejectedTaskTableHeaders,
     itemFormatters: PayrollRejectedTaskItemFormatters,
     taskSource: ['payroll_reject'],
   },
   {
-    text: <FormattedMessage module="payroll" id="payroll.tasks.delete.title" />,
+    text: "payroll.payroll.tasks.delete.title",
     tableHeaders: PayrollDeleteTaskTableHeaders,
     itemFormatters: PayrollDeleteTaskItemFormatters,
     taskSource: ['payroll_delete'],
