@@ -14,8 +14,6 @@ import {
   FormattedMessage,
   GRID_RESPONSIVE_STANDARD,
 } from '@openimis/fe-core';
-import AdvancedFiltersDialog from './AdvancedFiltersDialog';
-import { CLEARED_STATE_FILTER } from '../../constants';
 import PayrollStatusPicker from './PayrollStatusPicker';
 import PaymentMethodPicker from '../../pickers/PaymentMethodPicker';
 
@@ -34,75 +32,26 @@ const StyledPayrollHeadPanel = styled('div')(({ theme }) => ({
 }));
 
 class PayrollHeadPanel extends FormPanel {
-  constructor(props) {
-    super(props);
-    this.state = {
-      appliedCustomFilters: [CLEARED_STATE_FILTER],
-      appliedFiltersRowStructure: [CLEARED_STATE_FILTER],
-    };
-  }
-
-  componentDidMount() {
-    this.setStateFromProps(this.props);
-  }
-
-  setStateFromProps = (props) => {
-    const { jsonExt } = props?.edited ?? {};
-    if (jsonExt) {
-      const filters = this.getDefaultAppliedCustomFilters(jsonExt);
-      this.setState({ appliedCustomFilters: filters, appliedFiltersRowStructure: filters });
-    }
-  };
-
-  updateJsonExt = (value) => {
-    this.updateAttributes({
-      jsonExt: value,
-    });
-  };
-
-  // eslint-disable-next-line class-methods-use-this
-  getDefaultAppliedCustomFilters = (jsonExt) => {
-    try {
-      const jsonData = JSON.parse(jsonExt);
-      const advancedCriteria = jsonData.advanced_criteria || [];
-      const transformedCriteria = advancedCriteria.map(({ custom_filter_condition }) => {
-        const [field, filter, typeValue] = custom_filter_condition.split('__');
-        const [type, value] = typeValue.split('=');
-        return {
-          custom_filter_condition,
-          field,
-          filter,
-          type,
-          value,
-        };
-      });
-      return transformedCriteria;
-    } catch (error) {
-      return [];
-    }
-  };
-
-  setAppliedCustomFilters = (appliedCustomFilters) => {
-    this.setState({ appliedCustomFilters });
-  };
-
-  setAppliedFiltersRowStructure = (appliedFiltersRowStructure) => {
-    this.setState({ appliedFiltersRowStructure });
-  };
-
   render() {
     const {
       edited, classes, intl, readOnly, isPayrollFromFailedInvoices, benefitPlanId,
     } = this.props;
     const payroll = { ...edited };
-    const { appliedCustomFilters, appliedFiltersRowStructure } = this.state;
+
+    let effectiveBenefitPlanId = benefitPlanId;
+    if (!effectiveBenefitPlanId && payroll?.paymentPlan?.benefitPlan) {
+      const benefitPlan = JSON.parse(payroll.paymentPlan.benefitPlan);
+      if (benefitPlan) {
+        effectiveBenefitPlanId = JSON.parse(benefitPlan)?.id;
+      }
+    }
     return (
       <StyledPayrollHeadPanel>
         <Grid container className="form">
           <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
             <TextInput
               module="payroll"
-              label={formatMessage(intl, 'payroll', 'paymentPoint.name')}
+              label="paymentPoint.name"
               value={payroll?.name}
               required
               onChange={(name) => this.updateAttribute('name', name)}
@@ -117,7 +66,7 @@ class PayrollHeadPanel extends FormPanel {
               onChange={(paymentPlan) => this.updateAttribute('paymentPlan', paymentPlan)}
               value={payroll?.paymentPlan}
               readOnly={readOnly}
-              benefitPlanId={benefitPlanId}
+              benefitPlanId={effectiveBenefitPlanId}
             />
           </Grid>
           <Grid size={GRID_RESPONSIVE_STANDARD} className="item">
@@ -167,7 +116,7 @@ class PayrollHeadPanel extends FormPanel {
             <PublishedComponent
               pubRef="core.DatePicker"
               module="payroll"
-              label="dateValidFrom"
+              label="payroll.dateValidFrom"
               required
               value={payroll.dateValidFrom ? payroll.dateValidFrom : null}
               onChange={(v) => this.updateAttribute('dateValidFrom', v)}
@@ -178,7 +127,7 @@ class PayrollHeadPanel extends FormPanel {
             <PublishedComponent
               pubRef="core.DatePicker"
               module="payroll"
-              label="dateValidTo"
+              label="payroll.dateValidTo"
               required
               value={payroll.dateValidTo ? payroll.dateValidTo : null}
               onChange={(v) => this.updateAttribute('dateValidTo', v)}
